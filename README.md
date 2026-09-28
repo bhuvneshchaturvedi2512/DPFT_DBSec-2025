@@ -3,7 +3,7 @@ Replication of the training setup (both without and with differential privacy) a
 
 This repository consists of 4 files as follows:
 
-<h3><u>Full Fine-tuning without Differential Privacy</u></h3>
+<h3><ins>Full Fine-tuning without Differential Privacy</ins></h3>
 
 1. train\_gpt2\_wikitext\_full-finetuning.py - This script is used to first insert the canary sample "The secret code is hzdh0831" repeatedly into the training dataset Wikitext-2-v1, which contains 36718 samples for training and 3760 samples for validation, such that the repeated canary samples occupy 0.25% of the training samples (therefore, the canary is inserted 0.0025×36718 = 91 times). This script is then used to fine-tune a GPT-2 model under full fine-tuning setting. The training parameters used are as follows:
 
@@ -28,7 +28,7 @@ The script can be executed using the following commands.
 
 python train\_gpt2\_wikitext\_full-finetuning.py --seed 42 --modified\_dataset\_dir ./wikitext2\_canary\_seed42 --output\_dir ./gpt2-wikitext2-full-canary-seed42
 
-<h3><u>LoRA Fine-tuning without Differential Privacy</u></h3>
+<h3><ins>LoRA Fine-tuning without Differential Privacy</ins></h3>
 
 2. train\_gpt2\_wikitext\_lora.py - This script is used to first insert the canary sample "The secret code is hzdh0831" repeatedly into the training dataset Wikitext-2-v1, which contains 36718 samples for training and 3760 samples for validation, such that the repeated canary samples occupy 0.25% of the training samples (therefore, the canary is inserted 0.0025×36718 = 91 times). This script is then used to fine-tune a GPT-2 model under LoRA fine-tuning setting. The training parameters used are as follows:
 
@@ -57,7 +57,7 @@ The script can be executed using the following commands.
 
 python train\_gpt2\_wikitext\_lora.py --seed 42 --modified\_dataset\_dir ./wikitext2\_canary\_seed42 --output_dir ./gpt2-wikitext2-lora-canary-seed42
 
-<h3><u>Attack Script</u></h3>
+<h3><ins>Attack Script</ins></h3>
 
 3. gpt2\_canary\_attack.py - This script implements the data extraction methodology from the paper described in Sections 3.1 and 4.2 on pages 5--7 and 8--10. We test the weak attack where the input prefix is set to "The secret code is " and the exposure of the extracted candidates are evaluated relative to "hzdh0831". 
 
@@ -76,7 +76,7 @@ Result mismatch: The paper claims that even for LoRA without Differential Privac
 Our experiment states otherwise, where the correct suffix "hzdh0831" did not even appear in the 1,000 unique generated candidates.
 We are unsure whether this is due to an incorrect fine-tuning which is more likely given we are not using the correct set of parameters.
 
-<h3><u>Full Fine-tuning with Differential Privacy</u></h3>
+<h3><ins>Full Fine-tuning with Differential Privacy</ins></h3>
 
 4. train\_gpt2\_wikitext\_full-finetuning\_DP.py - This script implements the Differentially Private version of the full fine-tuning using the fastDP library with Book-Keeping approach for gradient clipping. The training parameters used are as follows:
 
